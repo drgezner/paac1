@@ -1,6 +1,6 @@
 pipeline {
   /* agent any */
-  agent master
+  agent any
 
   stages {
     stage('Init') {

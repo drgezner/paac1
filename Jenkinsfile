@@ -1,12 +1,24 @@
 pipeline {
-  agent any
+  /* agent any */
+  agent master
+
   stages {
     stage('Init') {
       steps {
-        echo "Testing..."
+        sh 'mvn clean package'
+      }
+      
+      post {
+        success {
+          echo "Now Archiving..."
+          archiveArtifacts artifacts: '**/target/*.war'
+        }
       }
     }
+  } 
 
+}
+/*
     stage('Build') {
       steps {
         echo 'Building...'
@@ -18,5 +30,4 @@ pipeline {
         echo 'Code deployed.'
       }
     }
-  }
-}
+*/
